@@ -1,0 +1,345 @@
+.main {
+	top:0px;
+	height: 700px; 
+}
+.chart {
+	position: relative;	
+	right: 150px;
+	width: 950px;
+  	height: 254px;
+  	pointer-events: none;
+}
+.chart_text {
+	position: relative;	
+	top: 100px;
+	width: 950px;
+  	height: 254px;
+}
+.Cicle{
+	position: relative;	
+	top:110px;
+	width: 125px;
+  	height: 125px;
+	float: left;
+	border-radius: 150px;
+	margin:0 ;
+}
+div.line {
+  	border: 0px solid #afafaf;
+  	width: 950px;
+  	height: 1.5px;
+  	background: #0B151F;
+}
+.menu
+{
+	position: relative;	
+	top :0px;
+	 z-index: 3;
+  color: #777;
+  border: 0px solid #afafaf;
+  width: 150px;
+  height: 380px;
+  margin-top: 10px;
+  text-align: center;
+  padding: 0px;
+  padding-top: 5px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 8px #777;
+  background: rgba(77, 88, 99, 0.3);
+}
+.butt_obj input[type="radio"] {
+        display: none;
+    }
+ 
+  .butt_obj input[type="radio"] + span {
+        display: inline-block;
+        width: 120px;
+  		height: 50px;
+  		line-height: 50px;
+        border: 1px solid #dfdfdf;
+        background-color: #ffffff;
+        text-align: center;
+        margin:6px;
+        cursor: pointer;
+    }
+.butt_obj input[type="radio"]:checked + span {
+   background-color: #113a6b;
+   color: #ffffff;
+}
+.title{
+	position: relative;
+	top:140px;
+	left: 180px;
+ 	width: 350px;
+ 	text-align: left;
+ 	font-size:36px;
+ 	font-weight:bold;
+}
+
+.main_box{
+ 	position: relative;
+	margin-top: 10px;
+	top: 120px;
+	background: rgba(77, 88, 99, 0.3);
+	left: 162px;
+	width: 750px;
+  	height: 420px;
+  	text-align: left;
+  	box-shadow: 0px 0px 8px #777;
+  	border-radius: 3px;
+}
+.main_box2{
+ 	position: relative;
+	margin-top: 10px;
+	top: 120px;
+	background: rgba(77, 88, 99, 0.3);
+	left: 162px;
+	width: 750px;
+  	height: 130px;
+  	text-align: left;
+  	box-shadow: 0px 0px 8px #777;
+  	border-radius: 3px;font-size: 280px;
+}
+.main_box3{
+ 	position: relative;
+	margin-top: 10px;
+	top: 120px;
+	background: rgba(77, 88, 99, 0.3);
+	left: 162px;
+	width: 750px;
+  	height: 320px;
+  	text-align: left;
+  	box-shadow: 0px 0px 8px #777;
+  	border-radius: 3px;
+}
+
+.box_title{
+	position: relative;
+	top: -30px;
+	width: 750px;
+	color:#11103f;
+  	font-weight:bold;
+  	text-align: center;
+}
+.box_title2{
+	position: relative;
+	top: 0px;
+	width: 750px;
+	color:#11103f;
+  	font-weight:bold;
+  	text-align: center;
+}
+.tline{
+	font-size: 100px;
+}
+.box_text {
+	cursor:pointer;
+  	font-weight:200;
+  	box-shadow: inset 0 -1px 0 #F6F2FC; 
+  	line-height: 2px
+}
+.box_text:hover {
+ 	color: #fff!important;
+	text-shadow: 2px 2px 2px gray;
+}
+.ftop {
+	position: relative;
+	float: bottom;	
+	top: 0px;
+}
+.popup-wrap{
+  background-color:rgba(0,0,0,.3); 
+  justify-content:center; 
+  align-items:center;     
+  position:fixed;        
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;               
+  display:none; 
+  padding:15px;  
+}
+
+.popup{
+  width:100%;              
+  max-width:400px;          
+  border-radius:10px;       
+  overflow:hidden;          
+  background-color:#264db5; 
+  box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); 
+}
+.popup-head{
+  width:100%;
+  height:50px;  
+  display:flex; 
+  align-items:center;
+  justify-content:center;
+}
+.head-title{
+	color:#fff;
+   	font-size:22px;
+}
+.popup-body{                
+  width:100%;
+  background-color:#ffffff; 
+}
+.body-content{             
+  width:100%;
+  padding:30px;             
+}
+.body-titlebox{             
+  text-align:center;      
+  width:100%;
+  height:40px;
+  margin-bottom:10px;      
+}
+
+.popup-foot{                      
+  width:100%;
+  height:50px;
+}
+.pop-btn{ 
+  display:inline-flex;            
+  width:33.3%;                      
+  height:100%;                    
+  justify-content:center;        
+  align-items:center;             
+  float:left;                    
+  color:#ffffff;                 
+  cursor:pointer;                
+}
+.pop-btn:hover{
+	background: rgb(0,3,255);
+	background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+}
+.pop-btn.confirm{                
+  border-right:1px solid #3b5fbf; 
+}
+
+.Cnum{
+	width:60px;                      
+  	height:30px;  
+}
+.Cname{
+	width:120px;                      
+  	height:30px;  
+}
+.Cadd{
+	width:250px;                      
+  	height:30px;  
+}
+.Ctel{
+	width:110px;                      
+  	height:30px;  
+}
+.Cmov{
+	width:180px;                      
+  	height:30px;  
+}
+.button_box{
+	position: relative;
+	margin:10px;
+	left: 250px;
+	width:350px;                      
+  	height:40px; 
+}
+.bttn-fill{
+	width:120px;
+	margin:400px; 
+}
+
+.page-item{
+	position: relative;;
+	top: 45px;
+	left: 330px;
+	float: left;
+	padding-left:10px;
+	padding:14px;
+	border: 1px solid #F6F2FC;
+	font-weight:bold;
+	list-style: none;
+}
+.page-item:hover{
+	cursor:pointer;
+	background:white;
+}
+.insert_btn{
+	position: relative;
+	top: 60px;
+	left: 390px;
+	float: left;
+	width:140px;                      
+  	height:40px; 
+}
+.Csel{
+	position: relative;
+	top: 60px;
+	left: 390px;
+	float: left;
+	width:140px;                      
+  	height:40px; 
+}
+.Tsel{
+	position: relative;
+	top: 60px;
+	left: 620px;
+	float: left;
+	width:140px;                      
+  	height:40px; 
+}
+.insert_btn.theater{
+	left: 600px;
+}
+.xy{
+	width:100px;                      
+  	height:30px;  
+}
+
+.manager_check{
+	position: relative;
+	float: left;
+	top: 5px;
+	left: 310px;
+	font-size:14px;
+	zoom: 1.5;
+}
+.member_box{
+	position: relative;
+	top:30px;
+
+}
+
+table.type03 {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  font-size:20px;
+  border-top: 1px solid #ccc;
+  border-left: 3px solid #369;
+  margin : 20px 10px;
+}
+table.type03 th {
+  width: 147px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #153d73;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+
+}
+table.type03 td {
+  width: 349px;
+  padding: 10px;
+  color: #12090a;
+  vertical-align: top;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.search{
+	position: absolute;
+	top: -20px;
+	left: 150px;
+	width:140px;                      
+  	height:40px; 
+}

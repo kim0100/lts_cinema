@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.IAdminPageDAO">
+
+	<select id="cinemaPageList" resultType="cinemaDto">
+		<![CDATA[
+		SELECT * 
+		FROM  (SELECT ROWNUM RNUM, C.*
+			   FROM (SELECT *
+			  		 FROM CINEMA
+			  		 ORDER BY LPAD(CINEMA_CODE,2,0) DESC) C )
+		WHERE RNUM >= #{startRow}
+		AND   ROWNUM <= #{perPage}
+		]]>
+	</select>
+	
+	<select id="cinemaList" resultType="cinemaDto">
+		SELECT * 
+		FROM   CINEMA
+	</select>
+	
+	<select id="cstList" resultType="customerDto">
+		<![CDATA[
+		SELECT * 
+		FROM (SELECT ROWNUM RNUM, C.*
+			  FROM (SELECT *
+			  		FROM CUSTOMER 
+			  		ORDER BY CUST_CODE) C )
+		WHERE RNUM >= #{startRow}
+		AND   ROWNUM <= #{perPage}
+		]]>
+	</select>
+	
+	<select id="screeningList" resultType="screenListDto">
+		<![CDATA[
+		SELECT C.CINEMA_NAME, M.MOVIE_NAME, SS.* 
+		FROM   (SELECT ROWNUM RNUM, S.*
+				FROM (SELECT * FROM SCREENING
+        		      WHERE CINEMA_CODE = #{1.cinema_code}
+       			      AND   THEATER_NAME = #{1.theater_name}
+       			      AND   SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD')
+       			      ORDER BY SCR_DATE DESC, SCR_START) S ) SS
+		JOIN   MOVIE M
+		ON     SS.MOVIE_CODE=M.MOVIE_CODE
+		JOIN   CINEMA C
+		ON     SS.CINEMA_CODE=C.CINEMA_CODE
+		WHERE RNUM >= #{0.startRow}
+		AND   RNUM <= #{0.lastRow}
+		ORDER BY SCR_DATE DESC, SCR_START, MOVIE_AUDIENCE
+		]]> 
+	</select>
+	
+	<select id="moviePageList" resultType="movieDto" >
+		<![CDATA[
+		SELECT * 
+		FROM (SELECT ROWNUM RNUM, M.*
+			  FROM (SELECT *
+			  		FROM MOVIE 
+			  		ORDER BY MOVIE_RATE DESC) M )
+		WHERE RNUM >= #{startRow}
+		AND   ROWNUM <= #{perPage}
+		]]>
+	</select>
+	
+	<select id="movieList" resultType="movieDto" >
+		SELECT MOVIE_CODE, MOVIE_NAME
+		FROM MOVIE
+		WHERE MOVIE_DATE >= TO_CHAR(SYSDATE-5000,'YYYYMMDD')
+		ORDER BY MOVIE_RATE DESC
+	</select>
+	
+	<select id="movieUpcode" resultType="String">
+		SELECT distinct MOVIE_CODE
+		FROM BOOKSEAT
+		WHERE SCR_DATE = TO_CHAR(SYSDATE-1,'YYYYMMDD')
+	</select>
+	
+	<select id="theaterList" resultType="theaterDto" >
+		SELECT * FROM THEATER WHERE CINEMA_CODE = #{cinema_code}
+	</select>
+	
+	<select id="seatList" resultType="seatDto">
+		SELECT S.*
+             , SUBSTR(SEAT_NAME,1,1) a
+             , SUBSTR(SEAT_NAME,2,3)*1 b
+		FROM   SEAT S
+		WHERE  CINEMA_CODE=#{cinema_code}
+		AND    THEATER_NAME=#{theater_name}
+		ORDER  BY a, b
+	</select>
+	
+	<delete id="seatAlldelete">
+		DELETE SEAT
+		WHERE CINEMA_CODE = #{cinema_code}
+		AND   THEATER_NAME = #{theater_name}		
+	</delete>
+	
+	<select id="sltCust" resultType="customerDto">
+		SELECT *
+		FROM   CUSTOMER
+		WHERE  CUST_ID=#{cust_id}
+	</select>
+	
+	<select id ="count" resultType="int">
+		SELECT COUNT(*) FROM ${table}
+	</select>
+	
+	<select id ="conditionCount" resultType="int">
+		SELECT COUNT(*) FROM ${table}
+		WHERE CINEMA_CODE = #{cinema_code}
+		AND   THEATER_NAME = #{theater_name}
+	</select>
+	
+	<select id="deleteCinemaAjax" resultType="int">
+		SELECT COUNT(*) 
+		FROM   THEATER
+		WHERE  CINEMA_CODE = #{cinema_code}
+	</select>
+	
+	<select id="deleteTheaterAjax" resultType="int">
+		SELECT COUNT(*) 
+		FROM   SEAT
+		WHERE  THEATER_NAME = #{theater_name}
+	</select>
+	
+  	<select id="deleteScrAjax" resultType="int">
+		SELECT COUNT(*) 
+		FROM   BOOKSEAT
+		WHERE  CINEMA_CODE = #{cinema_code}
+		AND    THEATER_NAME = #{theater_name}
+		AND    SCR_DATE = #{scr_date}
+		AND    SCR_START = #{scr_start}
+	</select> 
+</mapper>

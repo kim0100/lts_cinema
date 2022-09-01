@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.movie.b4.dto.BookSeatDTO" alias="bookSeatDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.CinemaDTO" alias="cinemaDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.CustBookDTO" alias="custBookDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.CustomerDTO" alias="customerDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.MovieDTO" alias="movieDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.ScreeningDTO" alias="screeningDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.ScreenListDTO" alias="screenListDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.SeatDTO" alias="seatDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.SeatListDTO" alias="seatListDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.TheaterDTO" alias="theaterDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.TicketCustDTO" alias="ticketCustDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.TicketDTO" alias="ticketDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.TheaterSltDTO" alias="theaterSltDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.PageDTO" alias="pageDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.CountDTO" alias="countDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.TimeSeatDTO" alias="timeSeatDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.SeatTimeDTO" alias="seatTimeDto"></typeAlias>
+		<typeAlias type="com.movie.b4.dto.PaymentDTO" alias="paymentDto"></typeAlias>
+	</typeAliases>
+</configuration>

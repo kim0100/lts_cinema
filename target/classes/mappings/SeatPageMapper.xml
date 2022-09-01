@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.ISeatPageDAO">
+
+	<select id="seatList" resultType="seatDto">
+		SELECT S.*
+             , SUBSTR(SEAT_NAME,1,1) a
+             , SUBSTR(SEAT_NAME,2,3)*1 b
+		FROM   SEAT S
+		WHERE  CINEMA_CODE=#{cinema_code}
+		AND    THEATER_NAME=#{theater_name}
+		ORDER  BY a, b
+	</select>
+	
+	<select id="sltSeat" resultType="String" parameterType="bookSeatDto">
+		SELECT SEAT_NAME 
+		FROM   BOOKSEAT 
+		WHERE  CINEMA_CODE=#{cinema_code}
+		AND	   THEATER_NAME=#{theater_name}
+		AND	   SCR_DATE=#{scr_date}
+		AND	   SCR_START=#{scr_start}
+		AND    MOVIE_CODE=#{movie_code}
+	</select>	
+	
+	<select id="seatTime" resultType="seatTimeDto">
+		SELECT DISTINCT SCR_START,SCR_END,( SELECT COUNT(*)
+                                            FROM   SEAT
+                                            WHERE  CINEMA_CODE = #{cinema_code}
+                                            AND    THEATER_NAME = #{theater_name}
+                                            AND    USE_CHECK = 'Y') SEAT_COUNT, ((SELECT COUNT(*)
+                                                                                  FROM   SEAT
+                                                                                  WHERE  CINEMA_CODE=#{cinema_code}
+                                                                                  AND    THEATER_NAME=#{theater_name}
+                                                                                  AND    USE_CHECK='Y')  - (SELECT COUNT(CASE WHEN CINEMA_CODE=#{cinema_code}
+                                                                                                                              AND  THEATER_NAME=#{theater_name}
+                                                                                                                              AND  SCR_DATE=#{scr_date}
+                                                                                                                              AND  SCR_START=S.SCR_START then 1 end)
+                                                                                                            FROM   BOOKSEAT
+                                                                                                            GROUP  BY s.SCR_START)) empty_seat
+		FROM   SCREENING S
+		WHERE  CINEMA_CODE=#{cinema_code}
+		AND    THEATER_NAME=#{theater_name}
+		AND    SCR_DATE=#{scr_date}
+		AND    MOVIE_CODE=#{movie_code}
+        AND    SCR_START=#{scr_start}
+		group  by SCR_START, SCR_END
+		ORDER  BY SCR_START
+	</select>	
+</mapper>

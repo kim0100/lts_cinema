@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.IMovieDAOm">
+
+	<select id="movieOne" resultType="movieDto">
+		SELECT * FROM MOVIE WHERE MOVIE_CODE=#{movie_code}
+	</select>
+	
+	<insert id="movieInsert">
+		INSERT INTO MOVIE VALUES
+		(#{movie_code}, #{movie_audience}, #{movie_name}, #{movie_genre},
+		#{movie_gmgr}, #{movie_act}, #{movie_time}, #{movie_rating}, #{movie_date},
+		#{movie_intrcn}, #{movie_poster})
+	</insert>
+	
+	<update id="movieRateUpdate">
+		UPDATE MOVIE
+		SET MOVIE_RATE = NVL((SELECT ROUND((SELECT COUNT(*)
+                              FROM   BOOKSEAT
+                              WHERE  MOVIE_CODE = #{movie_code}
+                              AND    SCR_DATE = TO_CHAR(SYSDATE-1,'YYYYMMDD'))/(SELECT COUNT(*)
+                                                             FROM BOOKSEAT 
+                                                             WHERE SCR_DATE = TO_CHAR(SYSDATE-1,'YYYYMMDD'))*100,2) MOVIE_RATE
+                  		      FROM DUAL),0) 
+        WHERE MOVIE_CODE = #{movie_code}
+	</update>
+	
+	<update id="movieAudienceUpdate">
+		UPDATE SEAT 
+		SET MOVIE_AUDIENCE = #{movie_audience}
+		WHERE MOVIE_CODE = #{movie_code}
+	</update>
+	
+	<delete id="movieDelete">
+		DELETE FROM MOVIE WHERE MOVIE_CODE = #{movie_code}
+	</delete>
+
+</mapper>

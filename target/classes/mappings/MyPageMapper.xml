@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.IMyPageDAO">
+
+	<select id="ticketRes" resultType="ticketCustDto">
+		SELECT T.CUST_CODE
+     		 , T.TK_CODE
+     		 , T.CINEMA_CODE
+     		 , C.CINEMA_NAME
+     		 , T.THEATER_NAME
+     		 , T.MOVIE_CODE
+     		 , M.MOVIE_NAME
+     		 , M.MOVIE_POSTER
+     		 , T.SCR_DATE
+     		 , T.SCR_START
+     		 , T.PRICE
+		FROM   TICKET T
+		JOIN   CINEMA C
+		ON     C.CINEMA_CODE=T.CINEMA_CODE
+		JOIN   MOVIE M
+		ON     T.MOVIE_CODE=M.MOVIE_CODE
+		WHERE  CUST_CODE=#{cust_code}
+		ORDER BY SCR_DATE DESC
+	</select>
+	
+	<select id="sltMax" resultType="int">
+		SELECT MAX(TK_CODE)
+		FROM   TICKET
+		WHERE  CUST_CODE=#{cust_code}
+	</select>
+	
+	<select id="cstMax" resultType="int">
+		SELECT MAX(CUST_CODE) 
+		FROM   CUSTOMER
+	</select>
+	
+	<select id="cstEmail" resultType="customerDto">
+		SELECT CUST_EMAIL
+		FROM CUSTOMER
+		WHERE CUST_EMAIL = #{cust_email}
+	</select>
+	
+</mapper>

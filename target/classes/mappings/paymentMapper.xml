@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.IPaymentDAOm">
+	
+	<!-- 결제내역단건조회 -->
+	<select id="payOne" resultType = "paymentDto">
+		SELECT * FROM PAYMENT WHERE CUST_CODE = #{cust_code}
+	</select>
+	
+	<!-- 결제후 인서트 -->
+	<insert id="payInsert" >
+		INSERT INTO PAYMENT
+		(cust_code, merchant_uid, pay_date, imp_uid, refund, amount)
+		VALUES
+		(#{cust_code}, #{merchant_uid}, #{pay_date}, #{imp_uid}, #{refund}, #{amount})
+	</insert>
+	
+	<!-- 환불 -->
+	<update id="payRefund">
+	update PAYMENT SET REFUND 
+	= 'refund' where merchant_uid = #{merchant_uid}
+	</update>
+
+</mapper>

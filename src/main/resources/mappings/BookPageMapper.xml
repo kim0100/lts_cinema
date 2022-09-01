@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.IBookPageDAO">
+
+	<select id="movieList" resultType="movieDto">
+		<![CDATA[
+        SELECT distinct M.MOVIE_CODE,M.MOVIE_GRADE,M.MOVIE_NAME,M.MOVIE_AUDIENCE
+		FROM   MOVIE M
+		JOIN   (SELECT MOVIE_CODE
+                FROM   SCREENING 
+                WHERE  SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD')) S
+		ON     S.MOVIE_CODE=M.MOVIE_CODE
+        ORDER  BY M.MOVIE_AUDIENCE DESC
+		]]> 
+	</select>
+	
+	<select id="cinemaList" resultType="cinemaDto">
+		<![CDATA[   
+		SELECT distinct C.CINEMA_CODE, C.CINEMA_NAME 
+		FROM   CINEMA C
+		JOIN  (SELECT CINEMA_CODE
+               FROM   SCREENING 
+               WHERE  SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD')) S
+		ON 	   C.CINEMA_CODE=S.CINEMA_CODE
+		ORDER  BY C.CINEMA_CODE
+		]]> 
+	</select>
+	
+	<select id="dateList" resultType="String">
+		<![CDATA[
+		SELECT distinct SCR_DATE
+		FROM   SCREENING
+		WHERE  SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD') 
+		ORDER  BY SCR_DATE 
+		]]>
+	</select>
+	
+	<!-- 아무것도 선택되지 않았을때 극장선택-->
+	<select id="sltCinema" resultType="screeningDto">
+		<![CDATA[   
+		SELECT regexp_replace(LISTAGG(MOVIE_CODE ,',') WITHIN GROUP(ORDER BY TO_NUMBER(MOVIE_CODE)), '([^,]+)(,\1)*(,|$)', '\1\3') MOVIE_CODE
+             , regexp_replace(LISTAGG(SCR_DATE,',') WITHIN GROUP(ORDER BY SCR_DATE), '([^,]+)(,\1)*(,|$)', '\1\3') SCR_DATE
+        FROM   SCREENING 
+        WHERE  CINEMA_CODE=#{cinema_code}
+        AND	   SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD')
+		]]>
+	</select>
+	
+	<!-- 아무것도 선택되지 않았을때 영화선택-->
+	<select id="sltMovie" resultType="screeningDto">
+		<![CDATA[   
+        SELECT regexp_replace(LISTAGG(CINEMA_CODE,',') WITHIN GROUP(ORDER BY CINEMA_CODE), '([^,]+)(,\1)*(,|$)', '\1\3') CINEMA_CODE
+             , regexp_replace(LISTAGG(SCR_DATE,',') WITHIN GROUP(ORDER BY SCR_DATE), '([^,]+)(,\1)*(,|$)', '\1\3') SCR_DATE
+        FROM   SCREENING 
+        WHERE  MOVIE_CODE=#{movie_code}
+        AND	   SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD')
+		]]>
+	</select>
+	
+	<!-- 아무것도 선택되지 않았을때 날짜선택-->
+	<select id="sltDate" resultType="screeningDto">
+        SELECT regexp_replace(LISTAGG(MOVIE_CODE ,',') WITHIN GROUP(ORDER BY TO_NUMBER(MOVIE_CODE)), '([^,]+)(,\1)*(,|$)', '\1\3') MOVIE_CODE
+             , regexp_replace(LISTAGG(CINEMA_CODE,',') WITHIN GROUP(ORDER BY CINEMA_CODE), '([^,]+)(,\1)*(,|$)', '\1\3') CINEMA_CODE
+        FROM   SCREENING 
+        WHERE  SCR_DATE = #{scr_date}
+	</select>
+
+	<!--     영화가 선택된 상황에서 극장선택했을때 영화 리스트                                -->
+	<select id="mSltCinemaMovie" resultType="screeningDto">
+		SELECT regexp_replace(LISTAGG(MOVIE_CODE ,',') WITHIN GROUP(ORDER BY TO_NUMBER(MOVIE_CODE)), '([^,]+)(,\1)*(,|$)', '\1\3') MOVIE_CODE
+        FROM   SCREENING 
+        WHERE  CINEMA_CODE = #{cinema_code}
+        AND	   SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD')
+	</select>
+		
+	<!--     영화가 선택된 상황에서 날짜선택했을때 영화 리스트                                -->
+	<select id="mSltDateMovie" resultType="screeningDto">
+		SELECT regexp_replace(LISTAGG(MOVIE_CODE ,',') WITHIN GROUP(ORDER BY TO_NUMBER(MOVIE_CODE)), '([^,]+)(,\1)*(,|$)', '\1\3') MOVIE_CODE
+        FROM   SCREENING 
+        WHERE  SCR_DATE = #{scr_date}
+	</select>
+
+	<!--     극장이 선택된 상황에서 영화선택했을때 극장 리스트                                -->
+	<select id="cSltMovieCinema" resultType="screeningDto">
+		SELECT regexp_replace(LISTAGG(CINEMA_CODE,',') WITHIN GROUP(ORDER BY CINEMA_CODE), '([^,]+)(,\1)*(,|$)', '\1\3') CINEMA_CODE
+        FROM   SCREENING 
+        WHERE  MOVIE_CODE=#{movie_code}
+        AND	   SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD')
+	</select>
+	
+	<!--     극장이 선택된 상황에서 날짜선택했을때 극장 리스트                                -->
+	<select id="cSltDateCinema" resultType="screeningDto">
+		SELECT regexp_replace(LISTAGG(CINEMA_CODE,',') WITHIN GROUP(ORDER BY CINEMA_CODE), '([^,]+)(,\1)*(,|$)', '\1\3') CINEMA_CODE
+        FROM   SCREENING 
+        WHERE  SCR_DATE=#{scr_date}
+	</select>	
+
+	<!--     날짜가 선택된 상황에서 영화선택했을때 날짜 리스트                                -->
+	<select id="dSltMovieDate" resultType="screeningDto">
+		SELECT regexp_replace(LISTAGG(SCR_DATE,',') WITHIN GROUP(ORDER BY SCR_DATE), '([^,]+)(,\1)*(,|$)', '\1\3') SCR_DATE
+        FROM   SCREENING 
+        WHERE  MOVIE_CODE = #{movie_code}
+        AND	   SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD')
+	</select>
+	
+	<!--     날짜가 선택된 상황에서 극장선택했을때 날짜 리스트                                -->
+	<select id="dSltCinemaDate" resultType="screeningDto">
+		SELECT regexp_replace(LISTAGG(SCR_DATE,',') WITHIN GROUP(ORDER BY SCR_DATE), '([^,]+)(,\1)*(,|$)', '\1\3') SCR_DATE
+        FROM   SCREENING 
+        WHERE  CINEMA_CODE = #{cinema_code}
+        AND	   SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD')
+	</select>
+	
+	<!--     영화, 극장선택했을때 날짜                               -->
+	<select id="sltMC" resultType="screeningDto">
+        SELECT regexp_replace(LISTAGG(SCR_DATE,',') WITHIN GROUP(ORDER BY SCR_DATE), '([^,]+)(,\1)*(,|$)', '\1\3') SCR_DATE
+        FROM   SCREENING 
+        WHERE  MOVIE_CODE = #{movie_code}
+        AND    CINEMA_CODE = #{cinema_code}
+        AND	   SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD')
+	</select>
+	
+	<!--     영화, 날짜선택했을때 극장                         -->
+	<select id="sltMD" resultType="screeningDto">
+        SELECT regexp_replace(LISTAGG(CINEMA_CODE,',') WITHIN GROUP(ORDER BY CINEMA_CODE), '([^,]+)(,\1)*(,|$)', '\1\3') CINEMA_CODE
+        FROM   SCREENING 
+        WHERE  MOVIE_CODE = #{movie_code}
+        AND    SCR_DATE = #{scr_date}
+	</select>
+	
+	<!--     극장, 날짜선택했을때 영화                                 -->
+	<select id="sltCD" resultType="screeningDto">
+        SELECT regexp_replace(LISTAGG(MOVIE_CODE ,',') WITHIN GROUP(ORDER BY TO_NUMBER(MOVIE_CODE)), '([^,]+)(,\1)*(,|$)', '\1\3') MOVIE_CODE
+        FROM   SCREENING 
+        WHERE  SCR_DATE = #{scr_date}
+        AND    CINEMA_CODE = #{cinema_code}
+	</select>
+	
+	<select id="timeList" resultType="screeningDto">
+		SELECT SCR_START
+			,  THERTER_NAME
+		FROM   SCREENING
+		WHERE  CINEMA_CODE=#{cinema_code}
+		AND    MOVIE_CODE=#{movie_code}
+		AND    SCR_DATE=#{scr_date}
+	</select>
+	
+	<select id="countSeat1" resultType="int">
+		SELECT COUNT(*)
+		FROM   SEAT
+		WHERE  CINEMA_CODE=#{cinema_code}
+		AND    THEATER_NAME=#{theater_name}
+		AND    USE_CHECK='Y'
+	</select>	
+	
+	<select id="countSeat2" parameterType="bookSeatDto" resultType="int">
+		SELECT COUNT(*) 
+		FROM   BOOKSEAT
+		WHERE  CINEMA_CODE=#{cinema_code}
+		AND	   THEATER_NAME=#{theater_name}
+		AND	   SCR_DATE=#{scr_date}
+		AND	   SCR_START=#{scr_start}
+	</select>
+	
+	<select id="tkCodeMax" resultType="String">
+		SELECT MAX(to_number(TK_CODE))+1 cust_code
+		FROM   TICKET
+		WHERE  CUST_CODE = #{cust_code}
+	</select>
+	
+	
+</mapper>

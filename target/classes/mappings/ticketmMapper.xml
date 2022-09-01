@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.ITicketDAOm">
+
+	<select id="ticketOne" resultType="ticketDto">
+		SELECT * FROM TICKET WHERE CUST_CODE=#{cust_code} AND TK_CODE=#{tk_code}
+	</select>
+	
+	<insert id="ticketInsert">
+		INSERT INTO TICKET VALUES
+		(#{cust_code}, #{tk_code}, #{cinema_code}, #{theater_name},
+		#{movie_code}, #{scr_date}, #{scr_start}, #{price})
+	</insert>
+
+	<delete id="ticketDelete">
+		DELETE FROM TICKET 
+		WHERE CUST_CODE = #{cust_code} 
+		AND TK_CODE = #{tk_code}
+	</delete>
+	
+	<delete id="custDelete">
+		DELETE FROM TICKET 
+		WHERE CUST_CODE = #{cust_code} 
+	</delete>
+
+</mapper>

@@ -1,0 +1,42 @@
+/*
+By codetomake.com
+*/
+
+@font-face {
+    font-family:"Maru";
+    src: url("resources/fonts/MaruBuri-SemiBold.ttf") ;
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family:"Maru_Bd";
+    src: url("resources/fonts/MaruBuri-Bold.ttf") ;
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family:"Black";
+    src: url("resources/fonts/BlackHanSans-Regular.ttf") ;
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:"jua";
+    src: url("resources/fonts/BMjua.ttf") ;
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family:"lemon";
+    src: url("resources/fonts/SFlemon.ttf") ;
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family:"Tmoney";
+    src: url("resources/fonts/TmoneyExtraBold.ttf") ;
+    font-weight: normal;
+    font-style: normal;
+}
+

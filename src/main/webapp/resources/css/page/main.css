@@ -1,0 +1,87 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+button.bttn-fill.btn1 {
+	position: absolute;
+	top: 100px;
+	left: 50px;
+	display:none;
+}
+button.bttn-fill.btn2 {
+	position: absolute;
+	top: 150px;
+	left: 50px;
+	display:none;
+}
+.swiper-container {
+	height:340px;
+	border-radius:7px;
+}
+
+.swiper-slide {
+	text-align:center;
+	align-items:center; /* 위아래 기준 중앙정렬 */
+	justify-content:center; /* 좌우 기준 중앙정렬 */
+	border:none;
+	overflow: hidden;
+}
+.swiper-slide:hover img{
+	filter: brightness(50%);
+}
+.swiper-slide:hover .postertext{
+	position:absolute;
+  left:15px;
+  bottom:70px;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+  display:none;
+}
+.ba
+{	
+	position: static;
+	float: inherit;
+	clear:both;
+	position: relative;
+	top: 5px;
+  	left : -5px;
+  	width: 960px;
+    overflow: auto;
+}
+div.ftop {
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+.chart {
+	width: 950px;
+  	height: 500px;
+}
+.bt1{
+float: left;
+margin-left: 30px;
+}
+.bt2{
+float: left;
+margin-left: 30px;
+}
+.bt3{
+float: left;
+margin-left: 30px;
+}
+.text{
+ text-align: center;
+}
+.postertext {
+  position:absolute;
+  left:15px;
+  bottom:70px;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+@font-face {
+    font-family:"Maru_Bd";
+    src: url("resources/fonts/MaruBuri-Bold.ttf") ;
+    font-weight: normal;
+    font-style: normal;
+}
+.movie_name{
+	font-size:20px;
+	font-family:"Maru_Bd";
+	font-weight:bold;
+}

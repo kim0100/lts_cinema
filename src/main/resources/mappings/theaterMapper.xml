@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.ITheaterDAOm">
+	
+	<select id="therterList" resultType="theaterDto" >
+		SELECT * FROM THEATER WHERE CINEMA_CODE = #{cinema_code}
+	</select>
+	
+	<select id="theaterOne" resultType="theaterDto">
+		SELECT * 
+		FROM   THEATER 
+		WHERE  CINEMA_CODE = #{cinema_code}
+		AND    THEATER_NAME = #{theater_name}
+	</select>
+	
+	<insert id="theaterInsert">
+		INSERT INTO THEATER VALUES
+		(#{cinema_code}, #{theater_name}, #{seat_x}, #{seat_y})
+	</insert>
+
+	<update id="theaterUpdate">
+		UPDATE THEATER SET SEAT_X = #{seat_x}, SEAT_Y = #{seat_y}
+		WHERE CINEMA_CODE = #{cinema_code} 
+		AND THEATER_NAME = #{theater_name}
+	</update>
+
+	<delete id="theaterDelete">
+		DELETE FROM THEATER 
+		WHERE CINEMA_CODE = #{cinema_code} 
+		AND THEATER_NAME = #{theater_name}
+	</delete>
+	
+	
+</mapper>

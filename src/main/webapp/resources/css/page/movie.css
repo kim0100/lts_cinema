@@ -1,0 +1,98 @@
+button.bttn-fill.btn1 {
+	position: relative;
+	top: 5px;
+	left: 50px;
+}
+
+.ba
+{	
+	position: relative;	
+	top: 50px;
+  	left : 50px;
+  	height: 500px;
+    overflow: auto;
+}
+div.ftop {
+	position: relative; 
+	clear:left; 
+	float:bottom;
+	height:50px;
+}
+
+div.line {
+margin:10px;
+  border: 0px solid #afafaf;
+  width: 950px;
+  height: 3px;
+  background: #0B151F;
+}
+
+.chart {
+	width: 950px;
+  	height: 500px;
+}
+.chart.h1 {
+	width: 950px;
+  	height: 500px;
+}
+.num{
+  border: 0px solid #afafaf;
+  margin:0px;
+  margin-left: 10px;
+  width: 179px;
+  height: 35px;
+  font-size:24px;
+  font-weight:bold;
+  border-radius: 3px;
+  text-align: center;
+  background: #E32566;
+  color:#E6FCFF;
+  animation: neon 6.5s ease-in-out infinite alternate;
+}
+.num2{
+  border: 0px solid #afafaf;
+  margin:0px;
+  margin-left: 10px;
+  width: 179px;
+  height: 35px;
+  font-size:24px;
+  font-weight:bold;
+  border-radius: 3px;
+  text-align: center;
+  background: #0b1c34;
+  color:#E6FCFF;
+  animation: neon2 4.5s ease-in-out infinite alternate;
+}
+.bt1{
+float: left;
+margin-left: 30px;
+margin-bottom: 20px;
+}
+.text{
+ margin:10px;
+ text-align: center;
+}
+.title{
+ font-size:32px;
+ font-weight:bold;
+}
+@keyframes neon {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
+      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+  }
+  to {
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #ff1177,
+      0 0 7px #ff1177, 0 0 8px #ff1177, 0 0 10px #ff1177, 0 0 15px #ff1177;
+  }
+}
+@keyframes neon2 {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228dff,
+      0 0 35px #228dff, 0 0 40px #228dff, 0 0 50px #228dff, 0 0 75px #228dff;
+  }
+  to {
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #228dff,
+      0 0 7px #228dff, 0 0 8px #228dff, 0 0 10px #228dff, 0 0 15px #228dff;
+  }
+}

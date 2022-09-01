@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.ICinemaPageDAO">
+
+	<select id="cinemaMulti" resultType="cinemaDto">
+		select * from 
+        CINEMA
+	</select>
+	
+	<select id="dateList" resultType="String">
+		<![CDATA[
+		SELECT distinct SCR_DATE
+		FROM   SCREENING
+		WHERE  SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD') 
+		AND    CINEMA_CODE=#{cinema_code}
+		ORDER  BY SCR_DATE 
+		]]>
+	</select>
+	
+	
+	<select id="cinemaOne" resultType="cinemaDto">
+        select * from (
+        SELECT C.CINEMA_CODE, C.CINEMA_NAME, C.CINEMA_ADRES,c.cinema_tel,c.cinema_image ,
+        (select count(T.THEATER_NAME) from THEATER T where C.CINEMA_CODE=T.CINEMA_CODE) as THEATER_COUNT, 
+        (select count(S.SEAT_NAME) from SEAT S where C.CINEMA_CODE=S.CINEMA_CODE AND s.use_check='Y') as SEAT_COUNT
+        from CINEMA C)
+        WHERE CINEMA_CODE=#{cinema_code}
+	</select>
+	
+	<select id="theaterSlt" resultType="theaterSltDto">
+		SELECT M.*, S.THEATER_NAME, S.SCR_START, ( SELECT COUNT(*)
+		                                           FROM SEAT
+		                                           WHERE CINEMA_CODE=#{cinema_code}
+		                                           AND   THEATER_NAME=S.THEATER_NAME
+		                                           AND   USE_CHECK='Y') SEATCOUNT
+		FROM   MOVIE M
+		JOIN  (SELECT MOVIE_CODE, THEATER_NAME, SCR_START
+       		   FROM   SCREENING
+       		   WHERE  CINEMA_CODE = #{cinema_code}
+       		   AND    SCR_DATE = #{scr_date}) S
+		ON     M.MOVIE_CODE = S.MOVIE_CODE
+		ORDER BY M.MOVIE_AUDIENCE DESC, S.SCR_START
+	</select>
+	
+	<select id="movieSlt" resultType="MovieDTO">
+		SELECT DISTINCT M.*
+		FROM   MOVIE M
+		JOIN  (SELECT *
+       		   FROM   SCREENING
+       		   WHERE  CINEMA_CODE = #{cinema_code}
+       		   AND    SCR_DATE = #{scr_date}) S
+		ON     M.MOVIE_CODE = S.MOVIE_CODE
+	</select>
+	
+	<select id="theaterList" resultType="theaterSltDTO">
+	    SELECT DISTINCT S.THEATER_NAME, ( SELECT COUNT(*)
+		                         		  FROM   SEAT
+		                        		  WHERE  CINEMA_CODE = #{cinema_code}
+                                          AND    THEATER_NAME = S.THEATER_NAME
+		                         		  AND    USE_CHECK = 'Y') SEATCOUNT
+		FROM   SCREENING S 
+        WHERE  CINEMA_CODE = #{cinema_code}
+        AND    SCR_DATE = #{scr_date} 
+        AND    MOVIE_CODE = #{movie_code}
+	</select>
+	
+	<select id="timeList" resultType="timeSeatDTO">
+		SELECT DISTINCT SCR_START, ((SELECT COUNT(*)
+                            		 FROM   SEAT
+                            		 WHERE  CINEMA_CODE=#{cinema_code}
+                            		 AND    THEATER_NAME=#{theater_name} 
+                            		 AND    USE_CHECK='Y')  - (SELECT COUNT(CASE WHEN CINEMA_CODE=#{cinema_code}
+                                                                         		 AND  THEATER_NAME=#{theater_name} 
+                                                                         		 AND  SCR_DATE=#{scr_date}
+                                                                         		 AND  SCR_START=S.SCR_START
+                                                                         		 AND  MOVIE_CODE=#{movie_code} then 1 end)
+			                                                   FROM BOOKSEAT
+			                                                   GROUP  BY s.SCR_START)) empty_seat
+		FROM   SCREENING S
+		WHERE  CINEMA_CODE=#{cinema_code}
+		AND    THEATER_NAME=#{theater_name}
+		AND    SCR_DATE=#{scr_date}
+		AND    MOVIE_CODE=#{movie_code}
+		group  by SCR_START
+		ORDER  BY SCR_START
+	</select>
+		
+</mapper>

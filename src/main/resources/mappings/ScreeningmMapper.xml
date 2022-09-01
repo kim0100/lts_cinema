@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.IScreeningDAOm">
+
+	<select id="screeningOne" resultType="screeningDto">
+		SELECT * 
+		FROM   SCREENING 
+		WHERE  CINEMA_CODE=#{cinema_code}
+		AND    THEATER_NAME=#{theater_name}
+		AND    MOVIE_CODE=#{movie_code}
+		AND    SCR_DATE=#{scr_date}
+		AND    SCR_START=#{scr_start}
+		
+	</select>
+
+	<insert id="screeningInsert">
+		INSERT INTO SCREENING
+		(cinema_code, theater_name, movie_code, scr_date, scr_start, scr_end)
+		 VALUES(
+		  #{cinema_code}, 
+		  #{theater_name},
+		  #{movie_code}, 
+		  #{scr_date}, 
+		  #{scr_start}, 
+		  #{scr_end})
+	</insert>
+	
+	<delete id="screeningDelete">
+		DELETE FROM SCREENING 
+		WHERE cinema_code = #{cinema_code}
+		AND theater_name = #{theater_name}
+		AND movie_code = #{movie_code}
+		AND scr_date = #{scr_date}
+		AND scr_start = #{scr_start}
+	</delete>
+
+</mapper>

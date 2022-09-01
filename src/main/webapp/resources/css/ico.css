@@ -1,0 +1,58 @@
+ /* 아이콘 */
+ 
+  #ico_all{
+ 	position: relative;
+ 	margin:3px;
+ 	float:left;  
+ 	width: 24px;
+  	height: 24px;
+  	color:white;
+  	border-radius:50px;
+  	background:#09aa28;
+  	line-height: 28px;
+  	text-align: center;
+  	font-size:11px;
+ }
+ #ico_12{
+ 	position: relative;
+ 	margin:3px;
+ 	float:left;
+ 	width: 24px;
+  	height: 24px;
+  	color:white;
+  	border-radius:50px;
+  	background:#2076d8;
+  	line-height: 25px;
+  	text-align: center;
+  	font-weight:bold;
+ }
+ 
+ #ico_15{
+ 	position: relative;
+ 	margin:3px;
+ 	float:left; 
+ 	width: 24px;
+  	height: 24px;
+  	color:white;
+  	border-radius:50px;
+  	background:#ff9508;
+  	line-height: 25px;
+  	text-align: center;
+  	font-weight:bold;
+ }
+ 
+ 
+  #ico_18{
+ 	position: relative;
+ 	margin:3px;
+ 	float:left;  
+ 	width: 24px;
+  	height: 24px;
+  	color:white;
+  	border-radius:50px;
+  	background:#ff0053;
+  	line-height: 28px;
+  	text-align: center;
+  	font-size:11px;
+  
+ }

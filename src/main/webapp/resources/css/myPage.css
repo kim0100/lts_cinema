@@ -1,0 +1,252 @@
+button.bttn-fill {
+	position: relative;
+	margin:10px;
+}
+.ba
+{	
+	position: relative;	
+	top: 50px;
+  	left : 50px;
+  	height: 500px;
+    overflow: auto;
+}
+div.ftop2 {
+	position: relative;	
+	top: -160px;
+	color: #fff;
+	height: 110px;
+	background: #070707;
+	width: 960px;
+	margin: 0 auto;
+	height: 70px;
+	padding: 10px;
+}
+div.line {
+  border: 0px solid #afafaf;
+  width: 950px;
+  height: 3px;
+  background: #0B151F;
+}
+.chart {
+	position: relative;	
+	right: 150px;
+	width: 950px;
+  	height: 154px;
+}
+.ticket {
+	position: relative;	
+	margin-bottom: 20px;
+	top:-200px;
+	background: rgba(77, 88, 99, 0.3);
+	left: 162px;
+	width: 750px;
+  	height: 176px;
+  	box-shadow: 0px 0px 8px #777;
+  	border-radius: 3px;
+}
+.Cicle{
+	position: relative;	
+	top:10px;
+	width: 125px;
+  	height: 125px;
+	float: left;
+	border-radius: 150px;
+	margin:0 ;
+}
+
+.text{
+	float: left;
+	width: 450px;
+ 	text-align: center;
+}
+.text2{
+	position: relative;
+	left: 170px;
+	top: -170px;
+	width: 560px;
+	font-size:16px;
+	font-weight:600;
+ 	text-align: left;
+  	color: #121c2b;
+  	height: 160px;
+  	padding:10px;
+  	border-radius: 3px;
+  	background: white;
+  	border: 2px solid #bddaff;
+
+}
+.text3{
+	position: relative;
+	left: 210px;
+	top: -264px;
+	width: 450px;
+	font-size:24px;
+ 	text-align: left;
+}
+.text4{
+	position: relative;
+	top: 15px;
+	color:#1d89ff;
+	font-size:32px;
+ 	text-align: center;
+ 	font-weight:bold;
+}
+.text5{
+	position: relative;
+	top: 35px;
+	right:100px;
+	font-size:24px;
+ 	text-align: center;
+ 	font-weight:200;
+}
+.title{
+	position: relative;
+	top:-200px;
+	left:120px;
+ 	width: 250px;
+ 	text-align: center;
+ 	font-size:36px;
+ 	font-weight:bold;
+}
+.title2{
+	position: relative;
+	top:-200px;
+	left: 157px;
+ 	width: 250px;
+ 	text-align: center;
+ 	font-size:36px;
+ 	font-weight:bold;
+}
+.butt_obj input[type="radio"] {
+        display: none;
+    }
+ 
+  .butt_obj input[type="radio"] + span {
+        display: inline-block;
+        padding: 10px 20px;
+        border: 1px solid #dfdfdf;
+        background-color: #ffffff;
+        text-align: center;
+        margin:8px;
+        cursor: pointer;
+    }
+ 
+    .butt_obj input[type="radio"]:checked + span {
+        background-color: #113a6b;
+        color: #ffffff;
+    }
+
+.menu
+{
+  position: relative;
+  color: #777;
+  border: 0px solid #afafaf;
+  width: 150px;
+  height: 190px;
+  margin-top: 10px;
+  text-align: center;
+  padding: 0px;
+  padding-top: 5px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 8px #777;
+  background: rgba(77, 88, 99, 0.3);
+}
+.thumb_medium.tc{
+ 	position: relative;
+	height:160px;
+	width:140px;
+}
+button.btn4{
+	position: relative;
+	width: 120px;
+    height: 50px;
+	top: -410px;
+	left:545px;
+	font-weight: bold;
+}
+
+.box2{
+ 	position: relative;	
+	margin-top: 20px;
+	top: -200px;
+	background: rgba(77, 88, 99, 0.3);
+	left: 162px;
+	width: 800px;
+	height: 750px;
+  	font-size: 24px;
+  	font-weight:200;
+  	text-align: left;
+  	box-shadow: 0px 0px 8px #777;
+  	border-radius: 3px;
+}
+.box3{
+	position: relative;	
+	margin-top: 0px;
+	background: rgba(77, 88, 99, 0.3);
+	top:-200px;
+	left: 162px;
+	width: 750px;
+  	height: 260px;
+  	font-size: 24px;
+  	font-weight:200;
+  	text-align: center;
+  	box-shadow: 0px 0px 8px #777;
+  	border-radius: 3px;
+}
+.butt_box{
+	position: relative;	
+	margin-top: 2px;
+	left: 100px;
+	width: 750px;
+}
+.pay{
+	position: relative;	
+	top: -260px;
+	left: 540px;
+	width: 150px;
+  	height: 80px;
+  	font-size: 24px;
+  	font-weight:bold;
+  	text-align: center;
+}
+.money{
+	font-size: 24px;
+	color:#1d89ff;
+}
+.input{
+	position: relative;
+  	float: center;
+	left: 10px;
+	width: 250px;
+	color:#1d89ff;
+	font-size: 16px;
+}
+#section2{
+	display: none;
+}
+#section3{
+	display: none;
+}
+.int_id{
+	display:  none;
+}
+.jong {
+	position: absolute;
+	z-index: 5;
+	float:right;
+	width: 120px;
+    height: 50px;
+	top: -50px;
+	left:120px;
+	font-weight: bold;
+}
+.confirmEmail{
+	position: absolute;
+	z-index: 5;
+	float:right;
+	width: 120px;
+    height: 50px;
+	top: -50px;
+	left:120px;
+	font-weight: bold;
+}

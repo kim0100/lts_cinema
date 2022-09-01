@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.ICustBookDAOm">
+
+	<select id="custBookSeat" resultType="String">
+		SELECT SEAT_NAME
+			 , SUBSTR(SEAT_NAME,1,1) a
+             , SUBSTR(SEAT_NAME,2,3)*1 b
+		FROM   CUSTBOOK
+		WHERE  CUST_CODE=#{cust_code}
+		AND    TK_CODE=#{tk_code}
+		ORDER  BY a, b
+	</select>
+
+	<select id="custBookOne" resultType="custBookDto">
+		SELECT * 
+		FROM   CUSTBOOK
+		WHERE  CUST_CODE=#{cust_code}
+		AND    TK_CODE=#{tk_code}
+		AND    SEAT_NAME=#{seat_name}
+	</select>
+
+	<insert id="custBookInsert">
+		INSERT INTO CUSTBOOK 
+		VALUES(#{cust_code}
+			, #{tk_code}
+			, #{seat_name}
+			, #{cinema_code}
+			, #{theater_name})
+	</insert>
+	
+	<delete id="custBookDelete">
+		DELETE CUSTBOOK 
+		WHERE  CUST_CODE=#{cust_code}
+		AND    TK_CODE=#{tk_code}
+	</delete>
+	
+	<delete id="custDelete">
+		DELETE CUSTBOOK 
+		WHERE  CUST_CODE=#{cust_code}
+	</delete>
+</mapper>

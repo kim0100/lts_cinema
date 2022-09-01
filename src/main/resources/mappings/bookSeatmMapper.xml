@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.IBookSeatDAOm">
+
+	<select id="bookSeatOne" resultType="bookSeatDto">
+		SELECT * FROM BOOKSEAT
+		WHERE CINEMA_CODE=#{cinema_code} 
+		AND   THEATER_NAME=#{theater_name} 
+		AND   SCR_DATE=#{scr_date}
+		AND	  SCR_START=#{scr_start}
+		AND   SEAT_NAME=#{seat_name}
+	</select>
+	
+	<insert id="bookSeatInsert" parameterType="bookSeatDto">
+		INSERT INTO BOOKSEAT VALUES 
+		(#{cinema_code}, #{theater_name}, 
+		#{scr_date}, #{scr_start}, 
+		#{seat_name}, #{movie_code})
+	</insert>
+	
+	<delete id="bookSeatDelete" parameterType="bookSeatDto">
+		DELETE BOOKSEAT 
+		WHERE CINEMA_CODE=#{cinema_code} 
+		AND   THEATER_NAME=#{theater_name} 
+		AND   SCR_DATE=#{scr_date}
+		AND	  SCR_START=#{scr_start}
+		AND   SEAT_NAME=#{seat_name}
+	</delete>
+
+</mapper>

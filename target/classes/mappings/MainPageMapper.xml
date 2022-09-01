@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.b4.dao.IMainPageDAO">
+
+	<select id="movieListPF" resultType="movieDto" parameterType="int">
+		<![CDATA[
+		SELECT B.*
+		FROM (SELECT DISTINCT MOVIE_CODE
+      		  FROM   SCREENING
+      		  WHERE  SCR_DATE >= TO_CHAR(SYSDATE,'YYYYMMDD')) A
+		JOIN (SELECT * FROM ( SELECT * FROM MOVIE
+                      		  ORDER BY MOVIE_RATE DESC)
+                      		  WHERE ROWNUM < #{rownum}) B
+		ON A.MOVIE_CODE = B.MOVIE_CODE
+		]]>
+	</select>
+	
+	<select id="movieListFU" resultType="movieDto" parameterType="int">
+		<![CDATA[
+		SELECT B.*
+		FROM (SELECT DISTINCT MOVIE_CODE
+      		  FROM   SCREENING
+      		  WHERE  SCR_DATE > TO_CHAR(SYSDATE,'YYYYMMDD')) A
+		JOIN (SELECT * FROM ( SELECT * FROM MOVIE
+                      		  ORDER BY MOVIE_RATE DESC)
+                      		  WHERE ROWNUM < #{rownum}) B
+		ON A.MOVIE_CODE = B.MOVIE_CODE
+		]]>
+	</select>
+	
+</mapper>
